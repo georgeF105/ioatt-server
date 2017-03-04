@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import knexConfig from '../knexfile';
+import * as knexConfig from '../../knexfile';
 
 import { IDevice } from './IDevice';
 
