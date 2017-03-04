@@ -4,6 +4,7 @@ import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 
 import devices from './devices/devices.route';
+import users from './users/users.route';
 
 let app = express();
 
@@ -18,5 +19,6 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api/v1/devices', devices);
+app.use('/api/v1/users', users);
 
 export = app;
