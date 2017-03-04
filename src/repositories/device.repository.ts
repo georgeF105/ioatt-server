@@ -5,13 +5,17 @@ import * as knexConfig from '../../knexfile';
 
 import { IDevice } from './IDevice';
 
-const knex = Knex(knexConfig[process.env.NODE_ENV || 'development']);
+const _knex = Knex(knexConfig[process.env.NODE_ENV || 'development']);
 const DEVICE_TABLE = 'devices';
 
 export class DeviceRepository implements IDeviceRepository {
+  constructor (
+    private knex: Knex
+  ) {
+  }
 
   public getDevice(id: number): Observable<IDevice> {
-    return Observable.fromPromise(knex(DEVICE_TABLE).where({ id }))
+    return Observable.fromPromise(this.knex(DEVICE_TABLE).where({ id }))
     .map(device => {
       return device[0];
     });
@@ -22,4 +26,4 @@ export interface IDeviceRepository {
   getDevice (id: number): Observable<IDevice>;
 }
 
-export default new DeviceRepository ();
+export default new DeviceRepository (_knex);
