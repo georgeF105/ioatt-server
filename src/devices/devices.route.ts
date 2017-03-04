@@ -14,7 +14,7 @@ router.get('/:id', function(req, res, next) {
   let id = req.params.id;
   deviceController.getDevice(id)
   .subscribe(device => {
-    res.json(deviceController.getDevice(id));
+    res.json(device);
     res.status(500);
   },
              error => {
