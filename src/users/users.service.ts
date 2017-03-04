@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 
-import UserRepository from './users.repository';
-import { IUserRepository } from './users.repository';
+import UserRepository from '../repositories/users.repository';
+import { IUserRepository } from '../repositories/users.repository';
 import { IUser } from './IUser';
 
 export class UserService implements IUserService {

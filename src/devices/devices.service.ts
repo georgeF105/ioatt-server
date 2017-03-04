@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 
-import DeviceRepository from './device.repository';
-import { IDeviceRepository } from './device.repository';
+import DeviceRepository from '../repositories/device.repository';
+import { IDeviceRepository } from '../repositories/device.repository';
 import { IDevice } from './IDevice';
 
 export class DeviceService implements IDeviceService {
