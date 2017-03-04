@@ -1,19 +1,22 @@
 import * as express from 'express';
+import deviceController from './devices.controller';
+
 let router = express.Router();
 
-/* GET listings */
+/* GET Devices */
 router.get('/', function(req, res, next) {
   res.status(500);
   res.json();
 });
 
-/* GET listing */
+/* GET Device */
 router.get('/:id', function(req, res, next) {
-  res.json();
+  let id = req.params.id;
+  res.json(deviceController.getDevice(id));
   res.status(500);
 });
 
-/* POST listings, update firebase */
+/* POST Devices, update firebase */
 router.post('/', function(req, res, next) {
     res.status(500);
     res.json();
