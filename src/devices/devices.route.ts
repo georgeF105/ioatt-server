@@ -12,8 +12,15 @@ router.get('/', function(req, res, next) {
 /* GET Device */
 router.get('/:id', function(req, res, next) {
   let id = req.params.id;
-  res.json(deviceController.getDevice(id));
-  res.status(500);
+  deviceController.getDevice(id)
+  .subscribe(device => {
+    res.json(deviceController.getDevice(id));
+    res.status(500);
+  },
+             error => {
+    res.json(error);
+    res.status(200);
+  });
 });
 
 /* POST Devices, update firebase */

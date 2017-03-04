@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+
 import DeviceService from './devices.service';
 import { IDeviceService } from './devices.service';
 import { IDevice } from './IDevice';
@@ -8,13 +10,13 @@ export class DeviceController implements IDeviceController {
   ) {
   }
 
-  public getDevice (id: number): IDevice {
+  public getDevice (id: number): Observable<IDevice> {
     return this.deviceService.getDevice(id);
-  }
+  };
 }
 
 export interface IDeviceController {
-  getDevice (id: number): IDevice;
+  getDevice (id: number): Observable<IDevice>;
 }
 
 export default new DeviceController (
