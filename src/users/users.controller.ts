@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
-import UserService from './users.service';
-import { IUsersService } from './users.service';
+import UsersService, { IUsersService } from '../services/users.service';
 import { IUser } from './IUser';
 
 export class UsersController implements IUsersController {
@@ -20,5 +19,5 @@ export interface IUsersController {
 }
 
 export default new UsersController (
-  UserService
+  UsersService
 );

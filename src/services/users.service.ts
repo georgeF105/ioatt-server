@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import UserRepository, { IUserRepository } from '../repositories/users.repository';
 import UserDeviceService, { IUserDeviceService } from '../services/user-device.service';
 import DeviceService, { IDeviceService } from '../devices/devices.service';
-import { IUser } from './IUser';
+import { IUser } from '../users/IUser';
 import { IDevice } from '../devices/IDevice';
 
-export class UserService implements IUserService {
+export class UsersService implements IUsersService {
   constructor (
     private userRepository: IUserRepository,
     private deviceService: IDeviceService,
@@ -34,11 +34,11 @@ export class UserService implements IUserService {
   }
 }
 
-export interface IUserService {
+export interface IUsersService {
   getUser (id: number): Observable<IUser>;
 }
 
-export default new UserService (
+export default new UsersService (
   UserRepository,
   DeviceService,
   UserDeviceService
