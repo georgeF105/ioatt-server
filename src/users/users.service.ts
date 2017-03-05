@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 
 import UserRepository, { IUserRepository } from '../repositories/users.repository';
-import UserDeviceRepository, { IUserDeviceRepository } from '../repositories/user-device.repository';
+import UserDeviceService, { IUserDeviceService } from '../services/user-device.service';
 import DeviceService, { IDeviceService } from '../devices/devices.service';
 import { IUser } from './IUser';
 import { IDevice } from '../devices/IDevice';
@@ -10,7 +10,7 @@ export class UserService implements IUserService {
   constructor (
     private userRepository: IUserRepository,
     private deviceService: IDeviceService,
-    private userDeviceRepository: IUserDeviceRepository
+    private userDeviceService: IUserDeviceService
   ) {}
 
   public getUser (id: number): Observable<IUser> {
@@ -25,9 +25,8 @@ export class UserService implements IUserService {
   }
 
   private getUsersDevices (userId: number): Observable<IDevice[]> {
-    return this.userDeviceRepository.getUsersDeviceIds(userId)
+    return this.userDeviceService.getUsersDeviceIds(userId)
     .flatMap(ids => {
-      console.log('getUsersDevices', ids);
       return Observable.forkJoin(
         ids.map(id => this.deviceService.getDevice(id))
       );
@@ -42,5 +41,5 @@ export interface IUserService {
 export default new UserService (
   UserRepository,
   DeviceService,
-  UserDeviceRepository
+  UserDeviceService
 );

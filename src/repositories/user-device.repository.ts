@@ -8,16 +8,18 @@ const USER_DEVICE_TABLE = 'join_user-device';
 
 export class UserDeviceRepository implements IUserDeviceRepository {
 
-  public getUsersDeviceIds(userId: number): Observable<number[]> {
-    return Observable.fromPromise(knex(USER_DEVICE_TABLE).where({ user_id: userId }))
-    .map((joins: Array<{}>) => {
-      return joins.map(join => join.device_id);
-    });
+  public getUserJoins(userId: number): Observable<any[]> {
+    return Observable.fromPromise(knex(USER_DEVICE_TABLE).where({ user_id: userId }));
+  }
+
+  public getDeviceJoins(deviceId: number) {
+    return Observable.fromPromise(knex(USER_DEVICE_TABLE).where({ device_id: deviceId }));
   }
 }
 
 export interface IUserDeviceRepository {
-  getUsersDeviceIds (userId: number): Observable<number[]>;
+  getUserJoins (userId: number): Observable<any[]>;
+  getDeviceJoins (deviceId: number): Observable<any[]>;
 }
 
 export default new UserDeviceRepository ();
