@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "node ./bin/www",
-    "dev": "nodemon ./dist/bin/www",
+    "dev": "nodemon ./bin/www",
     "build": "tsc",
     "lint": "tslint \"src/**/*.ts\""
   },
