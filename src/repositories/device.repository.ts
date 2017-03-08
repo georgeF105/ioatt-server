@@ -3,7 +3,7 @@ import 'rxjs/Rx';
 import * as Knex from 'knex';
 import * as knexConfig from '../../knexfile';
 
-import { IDevice } from './IDevice';
+import { IDevice } from '../devices/IDevice';
 
 const _knex = Knex(knexConfig[process.env.NODE_ENV || 'development']);
 const DEVICE_TABLE = 'devices';

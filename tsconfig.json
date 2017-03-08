@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "watch": true,
     "allowJs": true
   },
   "include": [
@@ -10,7 +9,7 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "knexfile.js",
+    "./knexfile.js",
     "node_modules"
   ]
 }

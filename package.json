@@ -2,9 +2,8 @@
   "name": "ioatt-server",
   "version": "1.0.0",
   "description": "Internet of all the things. Server",
-  "main": "index.js",
   "scripts": {
-    "prestart": "npm run build",
+    "prestart": "knex migrate:latest && knex seed:run",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "build": "tsc",
