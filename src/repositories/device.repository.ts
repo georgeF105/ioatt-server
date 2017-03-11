@@ -20,10 +20,15 @@ export class DeviceRepository implements IDeviceRepository {
       return device[0];
     });
   }
+
+  public makeDevice(device: IDevice): Observable<number> {
+    return Observable.fromPromise(<any>this.knex(DEVICE_TABLE).returning('id').insert(device));
+  }
 }
 
 export interface IDeviceRepository {
   getDevice (id: number): Observable<IDevice>;
+  makeDevice (device: IDevice): Observable<number>;
 }
 
 export default new DeviceRepository (_knex);

@@ -11,11 +11,16 @@ export class DeviceController implements IDeviceController {
 
   public getDevice (id: number): Observable<IDevice> {
     return this.deviceService.getDevice(id);
-  };
+  }
+
+  public makeDevice (device: IDevice): Observable<any> {
+    return this.deviceService.makeDevice(device);
+  }
 }
 
 export interface IDeviceController {
   getDevice (id: number): Observable<IDevice>;
+  makeDevice (device: IDevice): Observable<any>;
 }
 
 export default new DeviceController (
