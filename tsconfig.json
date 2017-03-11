@@ -2,14 +2,14 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "allowJs": true
+    "allowJs": true,
+    "outDir": "dist"
   },
   "include": [
     "bin/*",
     "src/**/*.ts"
   ],
   "exclude": [
-    "./knexfile.js",
     "node_modules"
   ]
 }

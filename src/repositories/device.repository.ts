@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import * as knexConfig from '../../knexfile';
+import dbConfig from './db.config';
 
 import { IDevice } from '../devices/IDevice';
 
-const _knex = Knex(knexConfig[process.env.NODE_ENV || 'development']);
+const _knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
 const DEVICE_TABLE = 'devices';
 
 export class DeviceRepository implements IDeviceRepository {

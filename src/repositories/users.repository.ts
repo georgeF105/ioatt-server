@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import * as knexConfig from '../../knexfile';
+import dbConfig from './db.config';
 
-import { IUser } from './IUser';
+import { IUser } from '../users/IUser';
 
-const knex = Knex(knexConfig[process.env.NODE_ENV || 'development']);
+const knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
 const USERS_TABLE = 'users';
 
 export class UserRepository implements IUserRepository {
