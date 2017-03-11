@@ -16,10 +16,15 @@ export class UserRepository implements IUserRepository {
       return user[0];
     });
   }
+
+  public makeUser(user: IUser): Observable<number> {
+    return Observable.fromPromise(<any>knex(USERS_TABLE).returning('id').insert(user));
+  }
 }
 
 export interface IUserRepository {
   getUser (id: number): Observable<IUser>;
+  makeUser (user: IUser): Observable<number>;
 }
 
 export default new UserRepository ();

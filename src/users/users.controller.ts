@@ -12,10 +12,15 @@ export class UsersController implements IUsersController {
   public getUser (id: number): Observable<IUser> {
     return this.userService.getUser(id);
   };
+
+  public makeUser (user: IUser): Observable<any> {
+    return this.userService.makeUser(user);
+  }
 }
 
 export interface IUsersController {
   getUser (id: number): Observable<IUser>;
+  makeUser (user: IUser): Observable<any>;
 }
 
 export default new UsersController (

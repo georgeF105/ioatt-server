@@ -24,6 +24,13 @@ export class UsersService implements IUsersService {
     });
   }
 
+  public makeUser (user): Observable<any> {
+    return this.userRepository.makeUser(user)
+    .map(result => {
+      return { id: result };
+    });
+  }
+
   private getUsersDevices (userId: number): Observable<IDevice[]> {
     return this.userDeviceService.getUsersDeviceIds(userId)
     .flatMap(ids => {
@@ -36,6 +43,7 @@ export class UsersService implements IUsersService {
 
 export interface IUsersService {
   getUser (id: number): Observable<IUser>;
+  makeUser (user: IUser): Observable<any>;
 }
 
 export default new UsersService (

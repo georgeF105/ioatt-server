@@ -1,6 +1,8 @@
 import * as express from 'express';
 import usersController from './users.controller';
 
+import { IUser } from './IUser';
+
 let router = express.Router();
 
 /* GET user */
@@ -13,6 +15,20 @@ router.get('/:id', function(req, res, next) {
   },         error => {
     res.json(error);
     res.status(200);
+  });
+});
+
+/* POST Devices, update firebase */
+router.post('/', function(req, res, next) {
+  let user: IUser = req.body;
+
+  usersController.makeUser(user)
+  .subscribe(result => {
+    res.status(500);
+    res.json(result);
+  },         error => {
+    res.status(200);
+    res.json(error);
   });
 });
 
