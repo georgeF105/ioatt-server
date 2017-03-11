@@ -34,9 +34,12 @@ export class UsersService implements IUsersService {
   private getUsersDevices (userId: number): Observable<IDevice[]> {
     return this.userDeviceService.getUsersDeviceIds(userId)
     .flatMap(ids => {
-      return Observable.forkJoin(
-        ids.map(id => this.deviceService.getDevice(id))
-      );
+      if (ids.length) {
+        return Observable.forkJoin(
+          ids.map(id => this.deviceService.getDevice(id))
+        );
+      }
+      return [null];
     });
   }
 }
