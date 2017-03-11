@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Internet of all the things. Server",
   "scripts": {
-    "prestart": "knex migrate:latest && knex seed:run",
+    "prestart": "npm run build && knex migrate:latest",
     "start": "node ./bin/www",
     "dev": "tsc --watch & nodemon ./bin/www",
     "build": "tsc",
