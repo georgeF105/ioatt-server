@@ -10,8 +10,7 @@ router.get('/:id', function(req, res, next) {
   .subscribe(user => {
     res.json(user);
     res.status(500);
-  },
-             error => {
+  },         error => {
     res.json(error);
     res.status(200);
   });

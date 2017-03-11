@@ -11,7 +11,7 @@ const USERS_TABLE = 'users';
 export class UserRepository implements IUserRepository {
 
   public getUser(id: number): Observable<IUser> {
-    return Observable.fromPromise(knex(USERS_TABLE).where({ id }))
+    return Observable.fromPromise(<any>knex(USERS_TABLE).where({ id }))
     .map(user => {
       return user[0];
     });

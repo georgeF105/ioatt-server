@@ -9,11 +9,11 @@ const USER_DEVICE_TABLE = 'join_user-device';
 export class UserDeviceRepository implements IUserDeviceRepository {
 
   public getUserJoins(userId: number): Observable<any[]> {
-    return Observable.fromPromise(knex(USER_DEVICE_TABLE).where({ user_id: userId }));
+    return Observable.fromPromise(<any>knex(USER_DEVICE_TABLE).where({ user_id: userId }));
   }
 
   public getDeviceJoins(deviceId: number) {
-    return Observable.fromPromise(knex(USER_DEVICE_TABLE).where({ device_id: deviceId }));
+    return Observable.fromPromise(<any>knex(USER_DEVICE_TABLE).where({ device_id: deviceId }));
   }
 }
 

@@ -15,7 +15,7 @@ export class DeviceRepository implements IDeviceRepository {
   }
 
   public getDevice(id: number): Observable<IDevice> {
-    return Observable.fromPromise(this.knex(DEVICE_TABLE).where({ id }))
+    return Observable.fromPromise(<any>this.knex(DEVICE_TABLE).where({ id }))
     .map(device => {
       return device[0];
     });
