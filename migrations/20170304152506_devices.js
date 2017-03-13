@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary();
     table.string('name').unique().notNullable();
     table.string('description');
-    table.interger('location_id').references('id').inTable('location');
+    table.integer('location_id').references('id').inTable('location');
   });
 };
 

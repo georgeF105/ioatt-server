@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
         {id: 2, user_id: 1, device_id: 2},
         {id: 3, user_id: 2, device_id: 2},
         {id: 4, user_id: 2, device_id: 3},
-        {id: 5, user_id: 3, device_id: 3},
+        {id: 5, user_id: 3, device_id: 3}
       ]);
     });
 };
