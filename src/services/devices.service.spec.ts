@@ -1,11 +1,14 @@
+import { Observable } from 'rxjs/Observable';
 import * as assert from 'assert';
+import * as sinon from 'sinon';
+
+import { IDevice } from '../devices/IDevice';
 import { DeviceService, IDeviceService } from './devices.service';
 import { IDeviceRepository } from '../repositories/device.repository';
 import DeviceRepoositoryMock from '../repositories/device.repositoryMock';
 
 describe('devices.service', () => {
   let deviceRepoository: IDeviceRepository;
-  // let classUnderTest: IDeviceService;
 
   let makeDeviceUnderTest = () => {
     return new DeviceService(deviceRepoository);
@@ -15,9 +18,21 @@ describe('devices.service', () => {
   });
 
   describe('getDevice', () => {
-    it('should return an observable of the device called for', () => {
+    it('should return an observable of the device called for', (done) => {
       let classUnderTest = makeDeviceUnderTest();
-      assert.equal(1, 1, 'congrats 1 === 1');
+      let dummyDevice: IDevice = {
+        id: 1,
+        name: 'dummyDeviceName',
+        description: 'a device dummy'
+      };
+      sinon.stub(deviceRepoository, 'getDevice').returns(Observable.from([dummyDevice]));
+
+      let result = classUnderTest.getDevice(1);
+
+      result.subscribe((device) => {
+        assert.equal(device, dummyDevice, 'device is expected');
+        done();
+      });
     });
   });
 });

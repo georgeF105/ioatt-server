@@ -27,6 +27,7 @@
     "@types/express": "^4.0.35",
     "@types/knex": "0.0.43",
     "@types/mocha": "^2.2.40",
+    "@types/sinon": "^1.16.35",
     "body-parser": "^1.17.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.0",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
+    "sinon": "^2.0.0",
     "sqlite3": "^3.1.8",
     "tslint": "^4.5.1"
   }
