@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
-import UsersService, { IUsersService } from '../services/users.service';
+import UsersService, { IUsersService } from '../services/user/users.service';
 import { IUser } from '../interfaces/IUser';
 
 export class UsersController implements IUsersController {

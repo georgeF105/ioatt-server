@@ -2,10 +2,10 @@ import { Observable } from 'rxjs/Observable';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
 
-import { IDevice } from '../interfaces/IDevice';
+import { IDevice } from '../../interfaces/IDevice';
 import { DeviceService, IDeviceService } from './devices.service';
-import { IDeviceRepository } from '../repositories/device.repository';
-import DeviceRepoositoryMock from '../repositories/device.repositoryMock';
+import { IDeviceRepository } from '../../repositories/device/device.repository';
+import DeviceRepoositoryMock from '../../repositories/device/device.repositoryMock';
 
 describe('devices.service', () => {
   let deviceRepoository: IDeviceRepository;

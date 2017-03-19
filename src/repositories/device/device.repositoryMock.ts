@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { IDeviceRepository } from './device.repository';
 
-import { IDevice } from '../interfaces/IDevice';
+import { IDevice } from '../../interfaces/IDevice';
 
 export default class DeviceRepositoryMock implements IDeviceRepository {
   public getDevice (id: number): Observable<IDevice> {

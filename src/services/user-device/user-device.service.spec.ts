@@ -2,10 +2,10 @@ import { Observable } from 'rxjs/Observable';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
 
-import { IDevice } from '../interfaces/IDevice';
+import { IDevice } from '../../interfaces/IDevice';
 import { UserDeviceService, IUserDeviceService } from './user-device.service';
-import { IUserDeviceRepository } from '../repositories/user-device.repository';
-import UserDeviceRepositoryMock from '../repositories/user-device.repositoryMock';
+import { IUserDeviceRepository } from '../../repositories/user-device/user-device.repository';
+import UserDeviceRepositoryMock from '../../repositories/user-device/user-device.repositoryMock';
 
 describe('user-device.service', () => {
   let userDeviceRepository: IUserDeviceRepository;

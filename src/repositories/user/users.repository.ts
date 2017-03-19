@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import dbConfig from './db.config';
+import dbConfig from './../db.config';
 
-import { IUser } from '../interfaces/IUser';
+import { IUser } from '../../interfaces/IUser';
 
 const knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
 const USERS_TABLE = 'users';

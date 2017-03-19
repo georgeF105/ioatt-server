@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
-import UserDeviceRepository, { IUserDeviceRepository } from '../repositories/user-device.repository';
+import UserDeviceRepository, { IUserDeviceRepository } from '../../repositories/user-device/user-device.repository';
 
 export class UserDeviceService implements IUserDeviceService {
   constructor (

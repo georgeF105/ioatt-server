@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import dbConfig from './db.config';
+import dbConfig from './../db.config';
 
-import { IActuator } from '../interfaces/IActuator';
+import { IActuator } from '../../interfaces/IActuator';
 
 const _knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
 const ACTUATOR_TABLE = 'actuators';
