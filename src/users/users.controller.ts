@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 
 import UsersService, { IUsersService } from '../services/users.service';
-import { IUser } from './IUser';
+import { IUser } from '../interfaces/IUser';
 
 export class UsersController implements IUsersController {
   constructor (

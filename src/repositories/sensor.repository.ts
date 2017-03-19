@@ -3,7 +3,7 @@ import 'rxjs/Rx';
 import * as Knex from 'knex';
 import dbConfig from './db.config';
 
-import { ISensor } from '../sensors/ISensor';
+import { ISensor } from '../interfaces/ISensor';
 
 const _knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
 const SENSOR_TABLE = 'sensors';

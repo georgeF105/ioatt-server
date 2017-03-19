@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import UserRepository, { IUserRepository } from '../repositories/users.repository';
 import UserDeviceService, { IUserDeviceService } from '../services/user-device.service';
 import DeviceService, { IDeviceService } from '../services/devices.service';
-import { IUser } from '../users/IUser';
-import { IDevice } from '../devices/IDevice';
+import { IUser } from '../interfaces/IUser';
+import { IDevice } from '../interfaces/IDevice';
 
 export class UsersService implements IUsersService {
   constructor (

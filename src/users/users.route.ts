@@ -1,7 +1,7 @@
 import * as express from 'express';
 import usersController from './users.controller';
 
-import { IUser } from './IUser';
+import { IUser } from '../interfaces/IUser';
 
 let router = express.Router();
 
