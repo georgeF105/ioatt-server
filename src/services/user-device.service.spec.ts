@@ -42,7 +42,6 @@ describe('user-device.service', () => {
       let result = classUnderTest.getUsersDeviceIds(1);
 
       result.subscribe((deviceIds) => {
-        console.log('deviceIds', deviceIds);
         assert.deepEqual(deviceIds, expected, 'device is expected');
         done();
       });
