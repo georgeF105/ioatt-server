@@ -9,7 +9,7 @@
     "build": "tsc",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "mocha dist/**/*.spec.js",
-    "tdd": "mocha dist/**/*.spec.js --watch"
+    "tdd": "tsc --watch & mocha dist/**/*.spec.js --watch"
   },
   "repository": {
     "type": "git",

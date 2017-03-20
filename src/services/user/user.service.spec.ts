@@ -4,6 +4,7 @@ import * as sinon from 'sinon';
 
 // interfaces:
 import { IUser } from '../../interfaces/IUser';
+import { IDevice } from '../../interfaces/IDevice';
 import { UsersService, IUsersService } from './users.service';
 import { IUserRepository } from '../../repositories/user/users.repository';
 import { IDeviceService } from '../device/devices.service';
@@ -14,30 +15,51 @@ import UserRepositoryMock from '../../repositories/user/users.repositoryMock';
 import DeviceServiceMock from '../device/device.serviceMock';
 import userDeviceServiceMock from '../user-device/user-device.serviceMock';
 
-describe('devices.service', () => {
+describe('user.service', () => {
   let userRepository: IUserRepository;
-  let deviceService: IDeviceService;
-  let userDeviceService: IUserDeviceService;
 
   let makeDeviceUnderTest = () => {
-    return new UsersService(userRepository, deviceService, userDeviceService);
+    return new UsersService(userRepository);
   };
   beforeEach(() => {
     userRepository = new UserRepositoryMock();
-    deviceService = new DeviceServiceMock();
-    userDeviceService = new userDeviceServiceMock();
   });
 
-  describe('getDevice', () => {
-    it('should return an observable of the device called for', (done) => {
-      let dummyUser = {
+  describe('getUser', () => {
+    it('should return an observable of a user with devices', (done) => {
+      // Arrange
+      let dummyUser: IUser = {
         id: 2,
-        name: 'dummy'
+        name: 'dummy',
+        devices: null
       };
-      let dummyDeviceIds = [2, 3, 5];
-      let dummyDevices;
+      let dummyDevices: Array<IDevice> = [{
+        id: 1,
+        name: 'dummy device name 1',
+        description: 'dummy device description 1'
+      },
+      {
+        id: 1,
+        name: 'dummy device name 1',
+        description: 'dummy device description 1'
+      }];
+
+      let expectedUser = dummyUser;
+      expectedUser.devices = dummyDevices;
+
       let classUnderTest = makeDeviceUnderTest();
 
+      sinon.stub(userRepository, 'getUser').returns(Observable.from([dummyUser]));
+      sinon.stub(userRepository, 'getUsersDevices').returns(Observable.from([dummyDevices]));
+
+      // Act
+      let result = classUnderTest.getUser(1);
+
+      // Assert
+      result.subscribe(user => {
+        assert.deepEqual(user, expectedUser, 'result = expectedUser');
+        done();
+      });
     });
   });
 });

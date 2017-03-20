@@ -8,15 +8,13 @@ import { IDevice } from '../../interfaces/IDevice';
 
 export class UsersService implements IUsersService {
   constructor (
-    private userRepository: IUserRepository,
-    private deviceService: IDeviceService,
-    private userDeviceService: IUserDeviceService
+    private userRepository: IUserRepository
   ) {}
 
   public getUser (id: number): Observable<IUser> {
     return this.userRepository.getUser(id)
     .flatMap(user => {
-      return this.getUsersDevices(user.id)
+      return this.userRepository.getUsersDevices(id)
       .map(devices => {
         user.devices = devices;
         return user;
@@ -30,18 +28,6 @@ export class UsersService implements IUsersService {
       return { id: result };
     });
   }
-
-  private getUsersDevices (userId: number): Observable<IDevice[]> {
-    return this.userDeviceService.getUsersDeviceIds(userId)
-    .flatMap(ids => {
-      if (ids.length) {
-        return Observable.forkJoin(
-          ids.map(id => this.deviceService.getDevice(id))
-        );
-      }
-      return [null];
-    });
-  }
 }
 
 export interface IUsersService {
@@ -50,7 +36,5 @@ export interface IUsersService {
 }
 
 export default new UsersService (
-  UserRepository,
-  DeviceService,
-  UserDeviceService
+  UserRepository
 );
