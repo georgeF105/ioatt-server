@@ -23,7 +23,6 @@ export class UserRepository implements IUserRepository {
   public getUsersDevices(userId: number): Observable<IDevice[]> {
     return Observable.fromPromise(<any>knex(USERS_DEVICES_TABLE).where({user_id: userId}).innerJoin(DEVICE_TABLE, `${USERS_DEVICES_TABLE}.user_id`, `${DEVICE_TABLE}.id`) )
     .map(devices => {
-      console.log('devices', devices);
       return devices;
     });
   }
