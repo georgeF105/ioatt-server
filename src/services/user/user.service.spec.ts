@@ -8,12 +8,10 @@ import { IDevice } from '../../interfaces/IDevice';
 import { UsersService, IUsersService } from './users.service';
 import { IUserRepository } from '../../repositories/user/users.repository';
 import { IDeviceService } from '../device/devices.service';
-import { IUserDeviceService } from '../user-device/user-device.service';
 
 // Mocks:
 import UserRepositoryMock from '../../repositories/user/users.repositoryMock';
 import DeviceServiceMock from '../device/device.serviceMock';
-import userDeviceServiceMock from '../user-device/user-device.serviceMock';
 
 describe('user.service', () => {
   let userRepository: IUserRepository;
