@@ -3,7 +3,7 @@ import deviceController from './devices.controller';
 
 let router = express.Router();
 
-import { IDevice } from './IDevice';
+import { IDevice } from '../interfaces/IDevice';
 
 /* GET Devices */
 router.get('/', function(req, res, next) {

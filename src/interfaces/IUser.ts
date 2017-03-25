@@ -1,4 +1,4 @@
-import { IDevice } from '../devices/IDevice';
+import { IDevice } from '../interfaces/IDevice';
 
 export interface IUser {
   id: number;
