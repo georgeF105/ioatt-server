@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
+import 'dotenv/config';
 
 import devices from './devices/devices.route';
 import users from './users/users.route';
