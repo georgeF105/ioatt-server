@@ -42,7 +42,7 @@ describe('user.service', () => {
         description: 'dummy device description 1'
       }];
 
-      let expectedUser = dummyUser;
+      let expectedUser = Object.assign({}, dummyUser);
       expectedUser.devices = dummyDevices;
 
       let classUnderTest = makeDeviceUnderTest();
@@ -55,7 +55,7 @@ describe('user.service', () => {
 
       // Assert
       result.subscribe(user => {
-        assert.deepEqual(user, expectedUser, 'result = expectedUser');
+        assert.deepEqual(user, dummyUser, 'result = expectedUser');
         done();
       });
     });
