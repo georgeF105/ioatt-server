@@ -1,12 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import dbConfig from './../db.config';
+import dbConfig, { SENSORS_TABLE } from './../db.config';
 
 import { ISensor } from '../../interfaces/ISensor';
 
 const _knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
-const SENSOR_TABLE = 'sensors';
 
 export class SensorRepository implements ISensorRepository {
   constructor (
@@ -15,14 +14,14 @@ export class SensorRepository implements ISensorRepository {
   }
 
   public getSensor(id: number): Observable<ISensor> {
-    return Observable.fromPromise(<any>this.knex(SENSOR_TABLE).where({ id }))
+    return Observable.fromPromise(<any>this.knex(SENSORS_TABLE).where({ id }))
     .map(sensor => {
       return sensor[0];
     });
   }
 
   public makeSensor(sensor: ISensor): Observable<number> {
-    return Observable.fromPromise(<any>this.knex(SENSOR_TABLE).returning('id').insert(sensor));
+    return Observable.fromPromise(<any>this.knex(SENSORS_TABLE).returning('id').insert(sensor));
   }
 }
 

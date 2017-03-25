@@ -1,12 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import dbConfig from './../db.config';
+import dbConfig, { LOCATION_TABLE } from './../db.config';
 
 import { ILocation } from '../../interfaces/ILocation';
 
 const _knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
-const LOCATION_TABLE = 'locations';
 
 export class LocationRepository implements ILocationRepository {
   constructor (
