@@ -10,7 +10,21 @@ export class DeviceService implements IDeviceService {
   ) {}
 
   public getDevice (id: number): Observable<IDevice> {
-    return this.deviceRepository.getDevice(id);
+    return this.deviceRepository.getDevice(id)
+    .flatMap(device => {
+      return this.deviceRepository.getDevicesSensors(id)
+      .map(sensors => {
+        device.sensors = sensors;
+        return device;
+      });
+    })
+    .flatMap(device => {
+      return this.deviceRepository.getDevicesActuators(id)
+      .map(actuators => {
+        device.actuators = actuators;
+        return device;
+      });
+    });
   }
 
   public makeDevice (device): Observable<any> {

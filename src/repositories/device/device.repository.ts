@@ -1,15 +1,14 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import dbConfig from './../db.config';
+import dbConfig, { DEVICE_TABLE, USERS_TABLE, USERS_DEVICES_TABLE, SENSORS_TABLE, ACTUATORS_TABLE } from './../db.config';
 
 import { IDevice } from '../../interfaces/IDevice';
 import { IUser } from '../../interfaces/IUser';
+import { ISensor } from '../../interfaces/ISensor';
+import { IActuator } from '../../interfaces/IActuator';
 
 const _knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
-const DEVICE_TABLE = 'devices';
-const USERS_TABLE = 'users';
-const USERS_DEVICES_TABLE = 'join_user-device';
 
 export class DeviceRepository implements IDeviceRepository {
   constructor (
@@ -28,6 +27,14 @@ export class DeviceRepository implements IDeviceRepository {
     return Observable.fromPromise(<any>this.knex(USERS_DEVICES_TABLE).where({user_id: deviceId}).innerJoin(USERS_TABLE, `${USERS_DEVICES_TABLE}.device_id`, `${USERS_TABLE}.id`) );
   }
 
+  public getDevicesSensors(deviceId: number): Observable<ISensor[]> {
+    return Observable.fromPromise(<any>this.knex(SENSORS_TABLE).where({device_id: deviceId}));
+  }
+
+  public getDevicesActuators(deviceId: number): Observable<IActuator[]> {
+    return Observable.fromPromise(<any>this.knex(ACTUATORS_TABLE).where({device_id: deviceId}));
+  }
+
   public makeDevice(device: IDevice): Observable<number> {
     return Observable.fromPromise(<any>this.knex(DEVICE_TABLE).returning('id').insert(device));
   }
@@ -36,6 +43,8 @@ export class DeviceRepository implements IDeviceRepository {
 export interface IDeviceRepository {
   getDevice (id: number): Observable<IDevice>;
   getDevicesUsers (deviceId: number): Observable<IUser[]>;
+  getDevicesSensors (deviceId: number): Observable<ISensor[]>;
+  getDevicesActuators (deviceId: number): Observable<IActuator[]>;
   makeDevice (device: IDevice): Observable<number>;
 }
 
