@@ -1,15 +1,12 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import * as Knex from 'knex';
-import dbConfig from './../db.config';
+import dbConfig, { USERS_TABLE, DEVICE_TABLE, USERS_DEVICES_TABLE } from './../db.config';
 
 import { IUser } from '../../interfaces/IUser';
 import { IDevice } from '../../interfaces/IDevice';
 
 const knex = Knex(dbConfig[process.env.NODE_ENV || 'development']);
-const USERS_TABLE = 'users';
-const DEVICE_TABLE = 'devices';
-const USERS_DEVICES_TABLE = 'join_user-device';
 
 export class UserRepository implements IUserRepository {
 
