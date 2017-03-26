@@ -17,6 +17,13 @@ export class UserRepository implements IUserRepository {
     });
   }
 
+  public getUserFromUid(uid: string): Observable<IUser> {
+    return Observable.fromPromise(<any>knex(USERS_TABLE).where({ uid }))
+    .map(user => {
+      return user[0];
+    });
+  }
+
   public getUsersDevices(userId: number): Observable<IDevice[]> {
     return Observable.fromPromise(<any>knex(USERS_DEVICES_TABLE).where({user_id: userId}).innerJoin(DEVICE_TABLE, `${USERS_DEVICES_TABLE}.user_id`, `${DEVICE_TABLE}.id`) )
     .map(devices => {
@@ -31,6 +38,7 @@ export class UserRepository implements IUserRepository {
 
 export interface IUserRepository {
   getUser (id: number): Observable<IUser>;
+  getUserFromUid(uid: string): Observable<IUser>;
   getUsersDevices(userId: number): Observable<IDevice[]>;
   makeUser (user: IUser): Observable<number>;
 }

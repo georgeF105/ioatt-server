@@ -19,6 +19,10 @@ export class UsersController implements IUsersController {
     });
   };
 
+  public getCurrentUser (token: string): Observable<IUser> {
+    return this.userService.getCurrentUser(token);
+  }
+
   public makeUser (user: IUser): Observable<any> {
     return this.userService.makeUser(user);
   }

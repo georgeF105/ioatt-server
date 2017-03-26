@@ -22,6 +22,13 @@ export class UsersService implements IUsersService {
     });
   }
 
+  public getCurrentUser (token: string): Observable<IUser> {
+    return this.verifyUserToken(token)
+    .flatMap(decodedToken => {
+      return this.userRepository.getUserFromUid(decodedToken.uid);
+    });
+  }
+
   public verifyUser (token: string, id: number): Observable<boolean> {
     return this.verifyUserToken(token)
     .flatMap(decodedToken => {
@@ -44,6 +51,7 @@ export class UsersService implements IUsersService {
 
 export interface IUsersService {
   getUser (id: number): Observable<IUser>;
+  getCurrentUser (token: string): Observable<IUser>;
   verifyUser (token: string, id: number): Observable<boolean>;
   makeUser (user: IUser): Observable<any>;
 }
