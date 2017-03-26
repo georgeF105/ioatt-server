@@ -8,7 +8,8 @@ let router = express.Router();
 /* GET user */
 router.get('/:id', function(req, res, next) {
   let id = req.params.id;
-  usersController.getUser(id)
+  let token = req.get('FirebaseToken');
+  usersController.getUser(id, token)
   .subscribe(user => {
     res.json(user);
     res.status(500);
