@@ -26,7 +26,7 @@ describe('user.service', () => {
   describe('getUser', () => {
     it('should return an observable of a user with devices', (done) => {
       // Arrange
-      let dummyUser: IUser = {
+      let dummyUser: IUser = <IUser>{
         id: 2,
         name: 'dummy',
         devices: null

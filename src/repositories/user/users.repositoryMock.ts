@@ -9,6 +9,10 @@ export default class UserRepositoryMock implements IUserRepository {
     throw('mock not stubed - getUser');
   }
 
+  public getUserFromUid(uid: string): Observable<IUser> {
+    throw('mock not stubed - getUserFromUid');
+  }
+
   public getUsersDevices(userId: number): Observable<IDevice[]> {
     throw('mock not stubed - getDevicesUsers');
   }
