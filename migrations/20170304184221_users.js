@@ -2,6 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('users', (table) => {
     table.increments('id').primary();
+    table.string('uid').unique();
     table.string('name').notNullable();
     table.string('email').unique();
   });

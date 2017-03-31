@@ -9,9 +9,19 @@ export class UsersController implements IUsersController {
   ) {
   }
 
-  public getUser (id: number): Observable<IUser> {
-    return this.userService.getUser(id);
+  public getUser (id: number, token: string): Observable<IUser> {
+    return this.userService.verifyUser(token, id)
+    .flatMap(verifyied => {
+      if (!verifyied) {
+        return Observable.throw('User verification error');
+      }
+      return this.userService.getUser(id);
+    });
   };
+
+  public getCurrentUser (token: string): Observable<IUser> {
+    return this.userService.getCurrentUser(token);
+  }
 
   public makeUser (user: IUser): Observable<any> {
     return this.userService.makeUser(user);
@@ -19,7 +29,7 @@ export class UsersController implements IUsersController {
 }
 
 export interface IUsersController {
-  getUser (id: number): Observable<IUser>;
+  getUser (id: number, token: string): Observable<IUser>;
   makeUser (user: IUser): Observable<any>;
 }
 

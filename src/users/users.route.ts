@@ -6,9 +6,22 @@ import { IUser } from '../interfaces/IUser';
 let router = express.Router();
 
 /* GET user */
+router.get('/me', (req, res, next) => {
+  let token = req.get('FirebaseToken');
+  usersController.getCurrentUser(token)
+  .subscribe(user => {
+    res.json(user);
+    res.status(500);
+  },         error => {
+    res.json(error);
+    res.status(200);
+  });
+});
+
 router.get('/:id', function(req, res, next) {
   let id = req.params.id;
-  usersController.getUser(id)
+  let token = req.get('FirebaseToken');
+  usersController.getUser(id, token)
   .subscribe(user => {
     res.json(user);
     res.status(500);
